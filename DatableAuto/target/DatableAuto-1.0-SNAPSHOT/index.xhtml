@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="stilos.css" />
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 <p:outputLabel value="Nombre" />
+                <p:inputText id="float-input" value="#{autoBean.auto.nombre}" />                  
+                   <p:outputLabel value="Marca" />
+                   <p:selectOneMenu id="marca" value="#{autoBean.auto.marca}" style="width:125px">            
+                    <f:selectItem itemLabel="Renaut" itemValue="Renaut" />
+                    <f:selectItem itemLabel="Toyota" itemValue="Toyota" />
+                    <f:selectItem itemLabel="Volkswagen" itemValue="Volkswagen" />
+                    <f:selectItem itemLabel="Nissan" itemValue="Nissan" />
+                    <f:selectItem itemLabel="Chevrolet" itemValue="Chevrolet" />
+                   </p:selectOneMenu>
+                 <p:outputLabel for="button" value="Modelo" />
+                 <p:calendar id="button" value="#{autoBean.auto.modelo}" showOn="button" pattern="yyyy" />        
+            </h:panelGrid>
+            <h:commandButton value="Agregar " actionListener="#{autoBean.agregar()}"/>
+            <p:dataTable var="car" value="#{autoBean.listAuto}" paginator="true" rows="5">
+                <p:column filterBy="#{car.nombre}" 
+                      headerText="Nombre" 
+                      filterMatchMode="contains">
+                    <h:outputText value="#{car.nombre}" />
+                </p:column>
+
+                <p:column filterBy="#{car.marca}" 
+                      headerText="Marca" 
+                      filterMatchMode="contains">
+                    <h:outputText value="#{car.marca}" />
+                </p:column>
+
+                <p:column filterBy="#{car.modelo}" 
+                      headerText="Modelo" 
+                      filterMatchMode="contains">
+                    <h:outputText value="#{car.modelo}" />
+                </p:column>
+
+            </p:dataTable>
+          
+        </h:form>
+    </h:body>
+</html>
